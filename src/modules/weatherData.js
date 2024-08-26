@@ -8,4 +8,8 @@ export default class WeatherData {
     this.humidity = humidity;
     this.feelsLike = feelsLike;
   }
+
+  toString() {
+    return `Temp: ${this.temp}, Location: ${this.location}, Condition: ${this.condition}, Temp Max: ${this.tempMax}, Temp Min: ${this.tempMin}, Humidity: ${this.humidity}, Feels Like: ${this.feelsLike}`;
+  }
 }

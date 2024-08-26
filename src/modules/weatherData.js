@@ -1,5 +1,6 @@
 export default class WeatherData {
-  constructor(location, condition, temp, tempMin, tempMax, humidity, feelsLike) {
+  constructor(datetime, condition, temp, tempMin, tempMax, humidity, feelsLike, location) {
+    this.datetime = datetime;
     this.location = location;
     this.condition = condition;
     this.temp = temp;
@@ -9,7 +10,11 @@ export default class WeatherData {
     this.feelsLike = feelsLike;
   }
 
-  toString() {
-    return `Temp: ${this.temp}, Location: ${this.location}, Condition: ${this.condition}, Temp Max: ${this.tempMax}, Temp Min: ${this.tempMin}, Humidity: ${this.humidity}, Feels Like: ${this.feelsLike}`;
+  currentToString() {
+    return `Date: ${this.datetime}, Temp: ${this.temp}, Location: ${this.location}, Condition: ${this.condition}, Temp Max: ${this.tempMax}, Temp Min: ${this.tempMin}, Humidity: ${this.humidity}, Feels Like: ${this.feelsLike}`;
+  }
+
+  weeklyToString() {
+    return `Date: ${this.datetime}, Temp: ${this.temp}, Condition: ${this.condition}`;
   }
 }

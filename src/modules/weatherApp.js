@@ -17,6 +17,6 @@ export default class WeatherApp {
       weatherData.days[0].humidity,
       weatherData.days[0].feelslike
     );
-    console.log(currentWeather);
+    console.log(currentWeather.toString());
   }
 }

@@ -32,4 +32,6 @@ export default class WeatherApp {
       console.log(dailyWeather.weeklyToString());
     });
   }
+
+  // showHourlyForecast next
 }

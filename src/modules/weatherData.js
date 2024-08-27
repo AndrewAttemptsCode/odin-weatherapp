@@ -1,4 +1,4 @@
-import { formatWeeklyDate, formatTime, formatCurrentDate } from "./utils";
+import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat } from "./utils";
 
 export default class WeatherData {
   constructor(datetime, condition, temp, tempMin, tempMax, humidity, feelsLike, location) {
@@ -14,16 +14,22 @@ export default class WeatherData {
 
   currentToString() {
     const formattedCurrentDate = formatCurrentDate(this.datetime);
-    return `Date: ${formattedCurrentDate}, Temp: ${this.temp}, Location: ${this.location}, Condition: ${this.condition}, Temp Max: ${this.tempMax}, Temp Min: ${this.tempMin}, Humidity: ${this.humidity}, Feels Like: ${this.feelsLike}`;
+    const formattedTemp = tempFormat(this.temp);
+    const formattedMinTemp = tempFormat(this.tempMin);
+    const formattedMaxTemp = tempFormat(this.tempMax);
+    const formattedFeelsLike = tempFormat(this.feelsLike);
+    return `Date: ${formattedCurrentDate}, Temp: ${formattedTemp}, Location: ${this.location}, Condition: ${this.condition}, Temp Max: ${formattedMaxTemp}, Temp Min: ${formattedMinTemp}, Humidity: ${this.humidity}, Feels Like: ${formattedFeelsLike}`;
   }
 
   weeklyToString() {
     const formattedDate = formatWeeklyDate(this.datetime);
-    return `Date: ${formattedDate}, Temp: ${this.temp}, Condition: ${this.condition}`;
+    const formattedTemp = tempFormat(this.temp);
+    return `Date: ${formattedDate}, Temp: ${formattedTemp}, Condition: ${this.condition}`;
   }
 
   hourlyToString() {
     const formattedTime = formatTime(this.datetime);
-    return `Time: ${formattedTime}, Condition: ${this.condition}, Temp: ${this.temp}`;
+    const formattedTemp = tempFormat(this.temp);
+    return `Time: ${formattedTime}, Condition: ${this.condition}, Temp: ${formattedTemp}`;
   }
 }

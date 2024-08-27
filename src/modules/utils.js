@@ -20,3 +20,10 @@ export function formatCurrentDate(dateString) {
   const monthIndex = Number(month) - 1;
   return `${day} ${months[monthIndex]}`;
 }
+
+export function tempFormat(tempValue) {
+  const tempNumber = Number(tempValue);
+  const tempC = ((tempNumber - 32) * 5) / 9;
+  const tempFormatted = tempC.toFixed(0);
+  return `${tempFormatted}°C`;
+}

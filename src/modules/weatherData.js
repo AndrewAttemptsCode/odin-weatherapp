@@ -19,6 +19,6 @@ export default class WeatherData {
   }
 
   hourlyToString() {
-    return `Date: ${this.datetime}, Condition: ${this.condition}, Temp: ${this.temp}`;
+    return `Time: ${this.datetime}, Condition: ${this.condition}, Temp: ${this.temp}`;
   }
 }

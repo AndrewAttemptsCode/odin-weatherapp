@@ -1,4 +1,4 @@
-import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat } from "./utils";
+import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat } from './utils';
 
 export default class WeatherData {
   constructor(datetime, condition, temp, tempMin, tempMax, humidity, feelsLike, location) {

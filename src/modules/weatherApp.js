@@ -1,5 +1,5 @@
-import WeatherAPI from "./weatherAPI";
-import WeatherData from "./weatherData";
+import WeatherAPI from './weatherAPI';
+import WeatherData from './weatherData';
 
 export default class WeatherApp {
   constructor(apiKey, baseUrl) {
@@ -44,5 +44,4 @@ export default class WeatherApp {
       console.log(hourlyWeather.hourlyToString());
     });
   }
-
 }

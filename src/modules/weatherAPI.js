@@ -15,6 +15,12 @@ export default class WeatherAPI {
     const weeklyForecast = await response.json();
     return weeklyForecast;
   }
+
+  async getHourlyForecast(location) {
+    const response = await fetch(`${this.baseUrl}${location}/today?key=${this.apiKey}`);
+    const hourlyForecast = await response.json();
+    return hourlyForecast;
+  }
 }
 
 // baseUrl: https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/

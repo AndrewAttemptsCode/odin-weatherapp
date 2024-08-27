@@ -22,8 +22,8 @@ export default class WeatherApp {
   }
 
   async showWeeklyForecast(location) {
-    const forecastData = await this.weatherAPI.getWeeklyForecast(location);
-    forecastData.days.slice(1).forEach(day => {
+    const weeklyForecastData = await this.weatherAPI.getWeeklyForecast(location);
+    weeklyForecastData.days.slice(1).forEach((day) => {
       const dailyWeather = new WeatherData(
         day.datetime,
         day.conditions,
@@ -33,5 +33,16 @@ export default class WeatherApp {
     });
   }
 
-  // showHourlyForecast next
+  async showHourlyForecast(location) {
+    const hourlyForecastData = await this.weatherAPI.getHourlyForecast(location);
+    hourlyForecastData.days[0].hours.forEach((hour) => {
+      const hourlyWeather = new WeatherData(
+        hour.datetime,
+        hour.conditions,
+        hour.temp
+      );
+      console.log(hourlyWeather.hourlyToString());
+    });
+  }
+
 }

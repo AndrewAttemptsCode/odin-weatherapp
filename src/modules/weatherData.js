@@ -17,4 +17,8 @@ export default class WeatherData {
   weeklyToString() {
     return `Date: ${this.datetime}, Temp: ${this.temp}, Condition: ${this.condition}`;
   }
+
+  hourlyToString() {
+    return `Date: ${this.datetime}, Condition: ${this.condition}, Temp: ${this.temp}`;
+  }
 }

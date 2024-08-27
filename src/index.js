@@ -7,3 +7,4 @@ const weatherApp = new WeatherApp(apiKey, baseUrl);
 
 weatherApp.showCurrentWeather("manchester");
 weatherApp.showWeeklyForecast("manchester");
+weatherApp.showHourlyForecast("manchester");

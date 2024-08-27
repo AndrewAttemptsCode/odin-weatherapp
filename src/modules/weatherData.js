@@ -1,3 +1,5 @@
+import { formatTime } from "./utils";
+
 export default class WeatherData {
   constructor(datetime, condition, temp, tempMin, tempMax, humidity, feelsLike, location) {
     this.datetime = datetime;
@@ -19,6 +21,7 @@ export default class WeatherData {
   }
 
   hourlyToString() {
-    return `Time: ${this.datetime}, Condition: ${this.condition}, Temp: ${this.temp}`;
+    const formattedTime = formatTime(this.datetime)
+    return `Time: ${formattedTime}, Condition: ${this.condition}, Temp: ${this.temp}`;
   }
 }

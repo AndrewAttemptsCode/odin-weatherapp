@@ -1,11 +1,17 @@
 import './style.css';
 import WeatherApp from './modules/weatherApp';
+import loadTemplate from './template';
 
-const baseUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
-const apiKey = "BEZ29GZQSBH53VG9GZQWMSF5H";
+const baseUrl = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
+const apiKey = 'BEZ29GZQSBH53VG9GZQWMSF5H';
 
 const weatherApp = new WeatherApp(apiKey, baseUrl);
 
-weatherApp.showCurrentWeather('manchester');
-weatherApp.showWeeklyForecast('manchester');
-weatherApp.showHourlyForecast('manchester');
+loadTemplate();
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const location = 'manchester';
+  await weatherApp.showCurrentWeather(location);
+  await weatherApp.showWeeklyForecast(location);
+  await weatherApp.showHourlyForecast(location);
+});

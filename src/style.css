@@ -46,3 +46,15 @@ p, h1, h2, h3, h4, h5, h6 {
   /* Day */
   background: linear-gradient(to bottom, #87CEEB, #87CEFA, #B0E0E6, #FFFFFF);
 }
+
+.header {
+  grid-area: header;
+}
+
+.current-side {
+  grid-area: current-side;
+}
+
+.main {
+  grid-area: main;
+}

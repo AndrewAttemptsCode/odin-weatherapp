@@ -18,7 +18,8 @@ export default class WeatherApp {
       weatherData.days[0].feelslike,
       weatherData.resolvedAddress
     );
-    console.log(currentWeather.currentToString());
+    // console.log(currentWeather.currentToString());
+    currentWeather.displayCurrent();
   }
 
   async showWeeklyForecast(location) {

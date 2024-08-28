@@ -58,3 +58,28 @@ p, h1, h2, h3, h4, h5, h6 {
 .main {
   grid-area: main;
 }
+
+/* current-side */
+
+.current-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 32px;
+  color: #fafafa;
+}
+
+.location-container {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.current-temp {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+.current-condition {
+  font-size: 20px;
+  font-weight: bold;
+}

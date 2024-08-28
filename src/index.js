@@ -1,3 +1,4 @@
+import './style.css';
 import WeatherApp from './modules/weatherApp';
 
 const baseUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";

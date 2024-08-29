@@ -11,6 +11,7 @@ export default class WeatherApp {
     const currentWeather = new WeatherData(
       weatherData.days[0].datetime,
       weatherData.days[0].conditions,
+      weatherData.days[0].icon,
       weatherData.days[0].temp,
       weatherData.days[0].tempmin,
       weatherData.days[0].tempmax,

@@ -9,7 +9,7 @@ const apiKey = 'BEZ29GZQSBH53VG9GZQWMSF5H';
 const weatherApp = new WeatherApp(apiKey, baseUrl);
 
 loadTemplate();
-getLocation();
+getLocation(weatherApp);
 
 document.addEventListener('DOMContentLoaded', async () => {
   const location = 'manchester';

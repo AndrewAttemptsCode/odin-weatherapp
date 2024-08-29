@@ -20,6 +20,7 @@ export default class WeatherData {
     const formattedFeelsLike = tempFormat(this.feelsLike);
 
     const currentSide = document.querySelector('.current-side');
+    currentSide.innerHTML = '';
     // Location / Date container
     const locationContainer = document.createElement('div');
     locationContainer.classList.add('location-container');

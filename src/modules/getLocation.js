@@ -1,3 +1,5 @@
+import searchImg from '../images/control-icons/search.svg';
+
 export default function getLocation() {
   const header = document.querySelector('.header');
 
@@ -19,6 +21,9 @@ export default function getLocation() {
   const searchButton = document.createElement('button');
   searchButton.type = 'submit';
   searchButton.classList.add('search-button');
-  searchButton.textContent = 'Search';
   searchForm.appendChild(searchButton);
+
+  const searchImage = document.createElement('img');
+  searchImage.src = searchImg;
+  searchButton.appendChild(searchImage);
 }

@@ -40,11 +40,7 @@ p, h1, h2, h3, h4, h5, h6 {
       "header header"
       "current-side main";
   
-  /* Change this later to work with day/night cycle */
-  /* Night */
-  /* background: radial-gradient(circle at top left, #0b132b, #1c2541, #3a506b, #5bc0be); */
-  /* Day */
-  background: linear-gradient(to bottom, #87CEEB, #87CEFA, #B0E0E6, #FFFFFF);
+  background: radial-gradient(circle at top left, #0b132b, #1c2541, #3a506b, #5bc0be);
 }
 
 .header {
@@ -101,12 +97,13 @@ p, h1, h2, h3, h4, h5, h6 {
   background: transparent;
   padding-right: 35px;
   border: none;
+  color: #fafafa;
   border-bottom: 2px solid #fafafa;
 }
 
 .search-input:focus {
   outline: none;
-  border-bottom: 2px solid #e4e2e2;
+  border-bottom: 2px solid #f5d776;
 }
 
 .search-input::placeholder {

@@ -65,7 +65,7 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 32px;
+  padding: 0 32px;
   color: #fafafa;
 }
 
@@ -82,4 +82,44 @@ p, h1, h2, h3, h4, h5, h6 {
 .current-condition {
   font-size: 20px;
   font-weight: bold;
+}
+
+/* header */
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  background: transparent;
+  padding-right: 35px;
+  border: none;
+  border-bottom: 2px solid #fafafa;
+}
+
+.search-input:focus {
+  outline: none;
+  border-bottom: 2px solid #e4e2e2;
+}
+
+.search-input::placeholder {
+  color: #fafafa;
+}
+
+.search-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }

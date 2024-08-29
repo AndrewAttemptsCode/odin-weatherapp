@@ -1,10 +1,11 @@
-import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat } from './utils';
+import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, setWeatherIcon } from './utils';
 
 export default class WeatherData {
-  constructor(datetime, condition, temp, tempMin, tempMax, humidity, feelsLike, location) {
+  constructor(datetime, condition, icon, temp, tempMin, tempMax, humidity, feelsLike, location) {
     this.datetime = datetime;
     this.location = location;
     this.condition = condition;
+    this.icon = icon;
     this.temp = temp;
     this.tempMin = tempMin;
     this.tempMax = tempMax;
@@ -18,6 +19,8 @@ export default class WeatherData {
     const formattedMinTemp = tempFormat(this.tempMin);
     const formattedMaxTemp = tempFormat(this.tempMax);
     const formattedFeelsLike = tempFormat(this.feelsLike);
+
+    setWeatherIcon(this.icon);
 
     const currentSide = document.querySelector('.current-side');
     // Clear previous current weather display

@@ -20,6 +20,7 @@ export default class WeatherData {
     const formattedFeelsLike = tempFormat(this.feelsLike);
 
     const currentSide = document.querySelector('.current-side');
+    // Clear previous current weather display
     currentSide.innerHTML = '';
     // Location / Date container
     const locationContainer = document.createElement('div');

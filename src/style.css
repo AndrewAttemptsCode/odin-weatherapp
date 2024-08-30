@@ -82,6 +82,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .min-max-container {
   display: flex;
+  align-items: center;
 }
 
 .current-max {
@@ -90,6 +91,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .feels-like-container {
   display: flex;
+  align-items: center;
 }
 
 /* header */
@@ -142,5 +144,5 @@ p, h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 20px;
   right: 20px;
-  height: 300px;
+  width: 500px;
 }

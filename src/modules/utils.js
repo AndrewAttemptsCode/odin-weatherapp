@@ -84,7 +84,10 @@ const weatherIconSet = {
 };
 
 export function setWeatherIcon(icon) {
-  const weatherBG = document.querySelector('.main');
-  const image = weatherIconSet[icon];
-  weatherBG.style.backgroundImage = `url(${image})`;
+  const mainContainer = document.querySelector('.main');
+  mainContainer.innerHTML = ''; // temp fix until main dom is done
+  const currentWeatherIcon = document.createElement('img');
+  currentWeatherIcon.classList.add('current-weather-icon');
+  currentWeatherIcon.src = weatherIconSet[icon];
+  mainContainer.appendChild(currentWeatherIcon);
 }

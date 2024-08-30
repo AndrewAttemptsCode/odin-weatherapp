@@ -1,4 +1,7 @@
 import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, setWeatherIcon } from './utils';
+import maxIcon from '../images/control-icons/maxtemp.svg';
+import minIcon from '../images/control-icons/mintemp.svg';
+import feelsLikeIcon from '../images/control-icons/feelslike.svg';
 
 export default class WeatherData {
   constructor(datetime, condition, icon, temp, tempMin, tempMax, humidity, feelsLike, location) {
@@ -42,6 +45,7 @@ export default class WeatherData {
     // Temp
     const currentTemp = document.createElement('p');
     currentTemp.classList.add('current-temp');
+    currentTemp.title = 'Current Temp';
     currentTemp.textContent = `${formattedTemp}`;
     currentSide.appendChild(currentTemp);
     // Condition
@@ -53,21 +57,43 @@ export default class WeatherData {
     const minMaxContainer = document.createElement('div');
     minMaxContainer.classList.add('min-max-container');
     currentSide.appendChild(minMaxContainer);
-    // Temp Max
+    // Temp Max Indicator
+    const currentMaxIndicator = document.createElement('img');
+    currentMaxIndicator.classList.add('current-max-indicator');
+    currentMaxIndicator.title = 'Max Temp';
+    currentMaxIndicator.src = maxIcon;
+    minMaxContainer.appendChild(currentMaxIndicator);
+    // Temp Max value
     const currentMax = document.createElement('p');
-    currentMax.classList.add('current-Max');
-    currentMax.textContent = `Max: ${formattedMaxTemp}`;
+    currentMax.classList.add('current-max');
+    currentMax.textContent = `${formattedMaxTemp}`;
     minMaxContainer.appendChild(currentMax);
-    // Temp Min
+    // Temp Min Indicator
+    const currentMinIndicator = document.createElement('img');
+    currentMinIndicator.classList.add('current-min-indicator');
+    currentMinIndicator.title = 'Min Temp';
+    currentMinIndicator.src = minIcon;
+    minMaxContainer.appendChild(currentMinIndicator);
+    // Temp Min value
     const currentMin = document.createElement('p');
     currentMin.classList.add('current-min');
-    currentMin.textContent = `Min: ${formattedMinTemp}`;
+    currentMin.textContent = `${formattedMinTemp}`;
     minMaxContainer.appendChild(currentMin);
-    // Feels Like
+    // Feels like container
+    const feelsLikeContainer = document.createElement('div');
+    feelsLikeContainer.classList.add('feels-like-container');
+    currentSide.appendChild(feelsLikeContainer);
+    // Feels Like Indicator
+    const feelsLikeIndicator = document.createElement('img');
+    feelsLikeIndicator.classList.add('feels-like-indicator');
+    feelsLikeIndicator.title = 'Feels like';
+    feelsLikeIndicator.src = feelsLikeIcon;
+    feelsLikeContainer.appendChild(feelsLikeIndicator);
+    // Feels Like value
     const currentFeelsLike = document.createElement('p');
     currentFeelsLike.classList.add('current-feels-like');
-    currentFeelsLike.textContent = `Feels Like: ${formattedFeelsLike}`;
-    currentSide.appendChild(currentFeelsLike);
+    currentFeelsLike.textContent = `${formattedFeelsLike}`;
+    feelsLikeContainer.appendChild(currentFeelsLike);
   }
 
   // currentToString() {

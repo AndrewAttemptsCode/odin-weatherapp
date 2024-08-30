@@ -80,6 +80,18 @@ p, h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+.min-max-container {
+  display: flex;
+}
+
+.current-max {
+  margin-right: 5px;
+}
+
+.feels-like-container {
+  display: flex;
+}
+
 /* header */
 
 .header {

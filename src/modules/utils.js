@@ -20,6 +20,7 @@ import sleetIcon from '../images/weather-icons/sleet.svg';
 import snowIcon from '../images/weather-icons/snow.svg';
 import thunderRainIcon from '../images/weather-icons/thunder-rain.svg';
 import thunderShowersDayIcon from '../images/weather-icons/thunder-showers-day.svg';
+import { getIsCelcius } from './temperatureUnit';
 
 export function formatTime(timeString) {
   const [hours, minutes] = timeString.split(':');
@@ -53,9 +54,14 @@ export function formatCurrentDate(dateString) {
 
 export function tempFormat(tempValue) {
   const tempNumber = Number(tempValue);
-  const tempC = ((tempNumber - 32) * 5) / 9;
-  const tempFormatted = tempC.toFixed(0);
-  return `${tempFormatted}°C`;
+  if (getIsCelcius()) {
+    const tempC = ((tempNumber - 32) * 5) / 9;
+    const tempFormatted = tempC.toFixed(0);
+    return `${tempFormatted}°C`;
+  }
+  const tempF = tempNumber;
+  const tempFormatted = tempF.toFixed(0);
+  return `${tempFormatted}°F`;
 }
 
 const weatherIconSet = {

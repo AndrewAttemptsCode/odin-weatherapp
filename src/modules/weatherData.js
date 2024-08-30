@@ -2,6 +2,7 @@ import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, setWeather
 import maxIcon from '../images/control-icons/maxtemp.svg';
 import minIcon from '../images/control-icons/mintemp.svg';
 import feelsLikeIcon from '../images/control-icons/feelslike.svg';
+import { toggleIsCelcius } from './temperatureUnit';
 
 export default class WeatherData {
   constructor(datetime, condition, icon, temp, tempMin, tempMax, humidity, feelsLike, location) {
@@ -94,6 +95,14 @@ export default class WeatherData {
     currentFeelsLike.classList.add('current-feels-like');
     currentFeelsLike.textContent = `${formattedFeelsLike}`;
     feelsLikeContainer.appendChild(currentFeelsLike);
+
+    currentTemp.addEventListener('click', () => {
+      toggleIsCelcius();
+      currentTemp.textContent = tempFormat(this.temp);
+      currentMin.textContent = tempFormat(this.tempMin);
+      currentMax.textContent = tempFormat(this.tempMax);
+      currentFeelsLike.textContent = tempFormat(this.feelsLike);
+    });
   }
 
   // currentToString() {

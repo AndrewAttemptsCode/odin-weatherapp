@@ -64,7 +64,7 @@ export function tempFormat(tempValue) {
   return `${tempFormatted}°F`;
 }
 
-const weatherIconSet = {
+export const weatherIconSet = {
   'clear-day': clearDayIcon,
   'rain': rainIcon,
   'clear-night': clearNightIcon,
@@ -88,12 +88,3 @@ const weatherIconSet = {
   'thunder-showers-night': thunderShowersNightIcon,
   'partly-cloudy-night': partlyCloudyNightIcon,
 };
-
-export function setWeatherIcon(icon) {
-  const mainContainer = document.querySelector('.main');
-  mainContainer.innerHTML = ''; // temp fix until main dom is done
-  const currentWeatherIcon = document.createElement('img');
-  currentWeatherIcon.classList.add('current-weather-icon');
-  currentWeatherIcon.src = weatherIconSet[icon];
-  mainContainer.appendChild(currentWeatherIcon);
-}

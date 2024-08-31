@@ -1,4 +1,4 @@
-import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, setWeatherIcon } from './utils';
+import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, weatherIconSet } from './utils';
 import maxIcon from '../images/control-icons/maxtemp.svg';
 import minIcon from '../images/control-icons/mintemp.svg';
 import feelsLikeIcon from '../images/control-icons/feelslike.svg';
@@ -23,8 +23,6 @@ export default class WeatherData {
     const formattedMinTemp = tempFormat(this.tempMin);
     const formattedMaxTemp = tempFormat(this.tempMax);
     const formattedFeelsLike = tempFormat(this.feelsLike);
-
-    setWeatherIcon(this.icon);
 
     const currentSide = document.querySelector('.current-side');
     // Clear previous current weather display
@@ -54,6 +52,13 @@ export default class WeatherData {
     currentCondition.classList.add('current-condition');
     currentCondition.textContent = `${this.condition}`;
     currentSide.appendChild(currentCondition);
+    // Temp Icon
+    const mainContainer = document.querySelector('.main');
+    mainContainer.innerHTML = ''; // test
+    const currentWeatherIcon = document.createElement('img');
+    currentWeatherIcon.classList.add('current-weather-icon');
+    currentWeatherIcon.src = weatherIconSet[this.icon];
+    mainContainer.appendChild(currentWeatherIcon);
     // Min/Max Container
     const minMaxContainer = document.createElement('div');
     minMaxContainer.classList.add('min-max-container');
@@ -120,9 +125,36 @@ export default class WeatherData {
     return `Date: ${formattedDate}, Temp: ${formattedTemp}, Condition: ${this.condition}`;
   }
 
-  hourlyToString() {
+  displayHourly() {
     const formattedTime = formatTime(this.datetime);
     const formattedTemp = tempFormat(this.temp);
-    return `Time: ${formattedTime}, Condition: ${this.condition}, Temp: ${formattedTemp}`;
+
+    // Card container
+    const cardContainer = document.querySelector('.hourly-card-container');
+    // Card
+    const weatherCard = document.createElement('div');
+    weatherCard.classList.add('weather-card');
+    cardContainer.appendChild(weatherCard);
+    // Time
+    const weatherTime = document.createElement('p');
+    weatherTime.classList.add('weather-time');
+    weatherTime.textContent = `${formattedTime}`;
+    weatherCard.appendChild(weatherTime);
+    // Icon
+    const weatherIcon = document.createElement('img');
+    weatherIcon.classList.add('weather-icon');
+    weatherIcon.src = weatherIconSet[this.icon];
+    weatherCard.appendChild(weatherIcon);
+    // Temp
+    const weatherTemp = document.createElement('p');
+    weatherTemp.classList.add('weather-temp');
+    weatherTemp.textContent = `${formattedTemp}`;
+    weatherCard.appendChild(weatherTemp);
   }
+
+  // hourlyToString() {
+  //   const formattedTime = formatTime(this.datetime);
+  //   const formattedTemp = tempFormat(this.temp);
+  //   return `Time: ${formattedTime}, Condition: ${this.condition}, Icon: ${this.icon}, Temp: ${formattedTemp}`;
+  // }
 }

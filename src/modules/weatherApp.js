@@ -37,13 +37,35 @@ export default class WeatherApp {
 
   async showHourlyForecast(location) {
     const hourlyForecastData = await this.weatherAPI.getHourlyForecast(location);
+
+    const mainContainer = document.querySelector('.main');
+    const hourlyContainer = document.createElement('div');
+    hourlyContainer.classList.add('hourly-container');
+    mainContainer.appendChild(hourlyContainer);
+
+    const hourlyTitle = document.createElement('h2');
+    hourlyTitle.classList.add('hourly-title');
+    hourlyTitle.textContent = 'Hourly Forecast';
+    hourlyContainer.appendChild(hourlyTitle);
+
+    let hourlyCardContainer = document.querySelector('.hourly-card-container');
+    if (!hourlyCardContainer) {
+      hourlyCardContainer = document.createElement('div');
+      hourlyCardContainer.classList.add('hourly-card-container');
+      hourlyContainer.appendChild(hourlyCardContainer);
+    }
+
+    hourlyCardContainer.innerHTML = '';
+
     hourlyForecastData.days[0].hours.forEach((hour) => {
       const hourlyWeather = new WeatherData(
         hour.datetime,
         hour.conditions,
+        hour.icon,
         hour.temp
       );
-      console.log(hourlyWeather.hourlyToString());
+      hourlyWeather.displayHourly();
+      // console.log(hourlyWeather.hourlyToString());
     });
   }
 }

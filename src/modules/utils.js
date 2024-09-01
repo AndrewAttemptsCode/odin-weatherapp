@@ -88,3 +88,38 @@ export const weatherIconSet = {
   'thunder-showers-night': thunderShowersNightIcon,
   'partly-cloudy-night': partlyCloudyNightIcon,
 };
+
+// Hourly carousel
+let currentWeatherCards = 0;
+
+export function showWeatherCard(index) {
+  const weatherCards = document.querySelectorAll('.weather-card');
+  const totalWeatherCards = weatherCards.length;
+  const cardsPerSet = 7;
+
+  const maxSets = Math.ceil(totalWeatherCards / cardsPerSet);
+
+  if (index >= maxSets) {
+    currentWeatherCards = 0;
+  } else if (index < 0) {
+    currentWeatherCards = maxSets - 1;
+  } else {
+    currentWeatherCards = index;
+  }
+
+  const cardWidth = 125;
+  const cardGap = 15;
+  const cardTotalWidth = cardWidth + cardGap;
+
+  const translateXValue = currentWeatherCards * cardsPerSet * cardTotalWidth;
+
+  document.querySelector('.hourly-card-container').style.transform = `translateX(-${translateXValue}px)`;
+}
+
+export function nextWeatherCard() {
+  showWeatherCard(currentWeatherCards + 1);
+}
+
+export function prevWeatherCard() {
+  showWeatherCard(currentWeatherCards - 1);
+}

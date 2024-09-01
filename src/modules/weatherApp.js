@@ -1,5 +1,8 @@
 import WeatherAPI from './weatherAPI';
 import WeatherData from './weatherData';
+import prevImage from '../images/control-icons/hourly-previous.svg';
+import nextImage from '../images/control-icons/hourly-next.svg';
+import { nextWeatherCard, prevWeatherCard } from './utils';
 
 export default class WeatherApp {
   constructor(apiKey, baseUrl) {
@@ -19,7 +22,6 @@ export default class WeatherApp {
       weatherData.days[0].feelslike,
       weatherData.resolvedAddress
     );
-    // console.log(currentWeather.currentToString());
     currentWeather.displayCurrent();
   }
 
@@ -48,6 +50,24 @@ export default class WeatherApp {
     hourlyTitle.textContent = 'Hourly Forecast';
     hourlyContainer.appendChild(hourlyTitle);
 
+    const hourlyPrev = document.createElement('button');
+    hourlyPrev.classList.add('hourly-prev');
+    hourlyContainer.appendChild(hourlyPrev);
+    hourlyPrev.addEventListener('click', prevWeatherCard);
+
+    const hourlyNext = document.createElement('button');
+    hourlyNext.classList.add('hourly-next');
+    hourlyContainer.appendChild(hourlyNext);
+    hourlyNext.addEventListener('click', nextWeatherCard);
+
+    const hourlyPrevImage = document.createElement('img');
+    hourlyPrevImage.src = prevImage;
+    hourlyPrev.appendChild(hourlyPrevImage);
+
+    const hourlyNextImage = document.createElement('img');
+    hourlyNextImage.src = nextImage;
+    hourlyNext.appendChild(hourlyNextImage);
+
     let hourlyCardContainer = document.querySelector('.hourly-card-container');
     if (!hourlyCardContainer) {
       hourlyCardContainer = document.createElement('div');
@@ -65,7 +85,6 @@ export default class WeatherApp {
         hour.temp
       );
       hourlyWeather.displayHourly();
-      // console.log(hourlyWeather.hourlyToString());
     });
   }
 }

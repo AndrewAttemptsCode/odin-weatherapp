@@ -110,15 +110,6 @@ export default class WeatherData {
     });
   }
 
-  // currentToString() {
-  //   const formattedCurrentDate = formatCurrentDate(this.datetime);
-  //   const formattedTemp = tempFormat(this.temp);
-  //   const formattedMinTemp = tempFormat(this.tempMin);
-  //   const formattedMaxTemp = tempFormat(this.tempMax);
-  //   const formattedFeelsLike = tempFormat(this.feelsLike);
-  //   return `Date: ${formattedCurrentDate}, Temp: ${formattedTemp}, Location: ${this.location}, Condition: ${this.condition}, Temp Max: ${formattedMaxTemp}, Temp Min: ${formattedMinTemp}, Humidity: ${this.humidity}, Feels Like: ${formattedFeelsLike}`;
-  // }
-
   weeklyToString() {
     const formattedDate = formatWeeklyDate(this.datetime);
     const formattedTemp = tempFormat(this.temp);
@@ -144,6 +135,7 @@ export default class WeatherData {
     const weatherIcon = document.createElement('img');
     weatherIcon.classList.add('weather-icon');
     weatherIcon.src = weatherIconSet[this.icon];
+    weatherIcon.title = `${this.condition}`;
     weatherCard.appendChild(weatherIcon);
     // Temp
     const weatherTemp = document.createElement('p');
@@ -151,10 +143,4 @@ export default class WeatherData {
     weatherTemp.textContent = `${formattedTemp}`;
     weatherCard.appendChild(weatherTemp);
   }
-
-  // hourlyToString() {
-  //   const formattedTime = formatTime(this.datetime);
-  //   const formattedTemp = tempFormat(this.temp);
-  //   return `Time: ${formattedTime}, Condition: ${this.condition}, Icon: ${this.icon}, Temp: ${formattedTemp}`;
-  // }
 }

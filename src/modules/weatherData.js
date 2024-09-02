@@ -1,4 +1,4 @@
-import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, weatherIconSet, formatWeeklyDay } from './utils';
+import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, weatherIconSet, formatWeeklyDay, toggleTempUnits } from './utils';
 import maxIcon from '../images/control-icons/maxtemp.svg';
 import minIcon from '../images/control-icons/mintemp.svg';
 import feelsLikeIcon from '../images/control-icons/feelslike.svg';
@@ -19,10 +19,13 @@ export default class WeatherData {
 
   displayCurrent() {
     const formattedCurrentDate = formatCurrentDate(this.datetime);
-    const formattedTemp = tempFormat(this.temp);
-    const formattedMinTemp = tempFormat(this.tempMin);
-    const formattedMaxTemp = tempFormat(this.tempMax);
-    const formattedFeelsLike = tempFormat(this.feelsLike);
+    // const formattedTemp = tempFormat(this.temp);
+    // const formattedMinTemp = tempFormat(this.tempMin);
+    // const formattedMaxTemp = tempFormat(this.tempMax);
+    // const formattedFeelsLike = tempFormat(this.feelsLike);
+
+    // OK, finally figured it out, set attributes to store og data for each
+    // Do calcs based off the attribute data, not text content
 
     const currentSide = document.querySelector('.current-side');
     // Clear previous current weather display
@@ -45,7 +48,8 @@ export default class WeatherData {
     const currentTemp = document.createElement('p');
     currentTemp.classList.add('current-temp');
     currentTemp.title = 'Current Temp';
-    currentTemp.textContent = `${formattedTemp}`;
+    currentTemp.setAttribute('original-temp-data', this.temp);
+    currentTemp.textContent = tempFormat(this.temp);
     currentSide.appendChild(currentTemp);
     // Condition
     const currentCondition = document.createElement('p');
@@ -54,7 +58,7 @@ export default class WeatherData {
     currentSide.appendChild(currentCondition);
     // Temp Icon
     const mainContainer = document.querySelector('.main');
-    mainContainer.innerHTML = ''; // test
+    mainContainer.innerHTML = '';
     const currentWeatherIcon = document.createElement('img');
     currentWeatherIcon.classList.add('current-weather-icon');
     currentWeatherIcon.src = weatherIconSet[this.icon];
@@ -72,7 +76,7 @@ export default class WeatherData {
     // Temp Max value
     const currentMax = document.createElement('p');
     currentMax.classList.add('current-max');
-    currentMax.textContent = `${formattedMaxTemp}`;
+    currentMax.textContent = tempFormat(this.tempMax);
     minMaxContainer.appendChild(currentMax);
     // Temp Min Indicator
     const currentMinIndicator = document.createElement('img');
@@ -83,7 +87,7 @@ export default class WeatherData {
     // Temp Min value
     const currentMin = document.createElement('p');
     currentMin.classList.add('current-min');
-    currentMin.textContent = `${formattedMinTemp}`;
+    currentMin.textContent = tempFormat(this.tempMin);
     minMaxContainer.appendChild(currentMin);
     // Feels like container
     const feelsLikeContainer = document.createElement('div');
@@ -98,15 +102,16 @@ export default class WeatherData {
     // Feels Like value
     const currentFeelsLike = document.createElement('p');
     currentFeelsLike.classList.add('current-feels-like');
-    currentFeelsLike.textContent = `${formattedFeelsLike}`;
+    currentFeelsLike.textContent = tempFormat(this.feelsLike);
     feelsLikeContainer.appendChild(currentFeelsLike);
 
     currentTemp.addEventListener('click', () => {
       toggleIsCelcius();
-      currentTemp.textContent = tempFormat(this.temp);
-      currentMin.textContent = tempFormat(this.tempMin);
-      currentMax.textContent = tempFormat(this.tempMax);
-      currentFeelsLike.textContent = tempFormat(this.feelsLike);
+      toggleTempUnits();
+      // currentTemp.textContent = tempFormat(this.temp);
+      // currentMin.textContent = tempFormat(this.tempMin);
+      // currentMax.textContent = tempFormat(this.tempMax);
+      // currentFeelsLike.textContent = tempFormat(this.feelsLike);
     });
   }
 

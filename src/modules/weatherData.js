@@ -1,4 +1,4 @@
-import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, weatherIconSet } from './utils';
+import { formatWeeklyDate, formatTime, formatCurrentDate, tempFormat, weatherIconSet, formatWeeklyDay } from './utils';
 import maxIcon from '../images/control-icons/maxtemp.svg';
 import minIcon from '../images/control-icons/mintemp.svg';
 import feelsLikeIcon from '../images/control-icons/feelslike.svg';
@@ -110,10 +110,38 @@ export default class WeatherData {
     });
   }
 
-  weeklyToString() {
+  displayWeekly() {
     const formattedDate = formatWeeklyDate(this.datetime);
     const formattedTemp = tempFormat(this.temp);
-    return `Date: ${formattedDate}, Temp: ${formattedTemp}, Condition: ${this.condition}`;
+    const formattedDay = formatWeeklyDay(this.datetime);
+
+    // Card container
+    const weeklyCardContainer = document.querySelector('.weekly-card-container');
+    // Card
+    const weeklyWeatherCard = document.createElement('div');
+    weeklyWeatherCard.classList.add('weekly-weather-card');
+    weeklyCardContainer.appendChild(weeklyWeatherCard);
+    // Day
+    const weeklyDay = document.createElement('p');
+    weeklyDay.classList.add('weekly-day');
+    weeklyDay.textContent = `${formattedDay}`;
+    weeklyWeatherCard.appendChild(weeklyDay);
+    // Date
+    const weeklyDate = document.createElement('p');
+    weeklyDate.classList.add('weekly-date');
+    weeklyDate.textContent = `${formattedDate}`;
+    weeklyWeatherCard.appendChild(weeklyDate);
+    // Weather icon
+    const weeklyIcon = document.createElement('img');
+    weeklyIcon.classList.add('weekly-icon');
+    weeklyIcon.src = weatherIconSet[this.icon];
+    weeklyIcon.title = `${this.condition}`;
+    weeklyWeatherCard.appendChild(weeklyIcon);
+    // Temp
+    const weeklyTemp = document.createElement('p');
+    weeklyTemp.classList.add('weekly-temp');
+    weeklyTemp.textContent = `${formattedTemp}`;
+    weeklyWeatherCard.appendChild(weeklyTemp);
   }
 
   displayHourly() {

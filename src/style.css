@@ -143,14 +143,15 @@ p, h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 30px;
 }
 
 .current-weather-icon {
   position: absolute;
-  top: 20px;
+  top: -100px;
   right: 20px;
-  width: 300px;
-  height: 300px;
+  width: 600px;
+  height: 600px;
   object-fit: contain;
 }
 
@@ -168,12 +169,14 @@ p, h1, h2, h3, h4, h5, h6 {
   transition: transform 0.5s ease-in-out;
 }
 
-.weather-card {
+.weather-card,
+.weekly-weather-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-width: 125px;
+  min-height: 161px;
   gap: 5px;
   padding: 16px;
   color: #fafafa;
@@ -181,13 +184,15 @@ p, h1, h2, h3, h4, h5, h6 {
   user-select: none;
 }
 
-.weather-icon {
+.weather-icon,
+.weekly-icon {
   width: 42px;
   height: 42px;
   object-fit: contain;
 }
 
-.hourly-title {
+.hourly-title,
+.weekly-title {
   color: #fafafa;
 }
 
@@ -212,4 +217,16 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .hourly-next {
   right: 1.6%;
+}
+
+/* Weekly Forecast */
+.weekly-container {
+  z-index: 1;
+}
+
+.weekly-card-container {
+  display: flex;
+  min-width: 980px;
+  max-height: 200px;
+  gap: 15px;
 }

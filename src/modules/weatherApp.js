@@ -27,13 +27,30 @@ export default class WeatherApp {
 
   async showWeeklyForecast(location) {
     const weeklyForecastData = await this.weatherAPI.getWeeklyForecast(location);
+
+    const mainContainer = document.querySelector('.main');
+
+    const weeklyContainer = document.createElement('div');
+    weeklyContainer.classList.add('weekly-container');
+    mainContainer.appendChild(weeklyContainer);
+
+    const weeklyTitle = document.createElement('h2');
+    weeklyTitle.classList.add('weekly-title');
+    weeklyTitle.textContent = 'Weekly Forecast';
+    weeklyContainer.appendChild(weeklyTitle);
+
+    const weeklyCardContainer = document.createElement('div');
+    weeklyCardContainer.classList.add('weekly-card-container');
+    weeklyContainer.appendChild(weeklyCardContainer);
+
     weeklyForecastData.days.slice(1).forEach((day) => {
-      const dailyWeather = new WeatherData(
+      const weeklyWeather = new WeatherData(
         day.datetime,
         day.conditions,
+        day.icon,
         day.temp
       );
-      console.log(dailyWeather.weeklyToString());
+      weeklyWeather.displayWeekly();
     });
   }
 

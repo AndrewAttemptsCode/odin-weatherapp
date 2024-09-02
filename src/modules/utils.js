@@ -60,16 +60,33 @@ export function formatCurrentDate(dateString) {
   return `${targetDay}, ${date} ${targetMonth}`;
 }
 
+// Celsius to Fahrenheit conversion
 export function tempFormat(tempValue) {
   const tempNumber = Number(tempValue);
+
   if (getIsCelcius()) {
     const tempC = ((tempNumber - 32) * 5) / 9;
     const tempFormatted = tempC.toFixed(0);
     return `${tempFormatted}°C`;
   }
-  const tempF = tempNumber;
-  const tempFormatted = tempF.toFixed(0);
+  const tempFormatted = tempNumber.toFixed(0);
   return `${tempFormatted}°F`;
+}
+
+// Toggle temp units currently displayed for current, hourly, weekly
+export function toggleTempUnits() {
+  const tempElements = document.querySelectorAll('.current-temp, .current-max, .current-min, .current-feels-like, .weekly-temp, .weather-temp');
+
+  tempElements.forEach((element) => {
+    let originalTempValue = parseFloat(element.getAttribute('original-temp-data'));
+
+    if (Number.isNaN(originalTempValue)) {
+      originalTempValue = parseFloat(element.textContent);
+      element.setAttribute('original-temp-data', originalTempValue);
+    }
+
+    element.textContent = tempFormat(originalTempValue);
+  });
 }
 
 export const weatherIconSet = {

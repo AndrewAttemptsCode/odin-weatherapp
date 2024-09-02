@@ -38,6 +38,14 @@ export function formatWeeklyDate(dateString) {
   return `${date} ${months[monthIndex]}`;
 }
 
+export function formatWeeklyDay(dateString) {
+  const [year, month, date] = dateString.split('-');
+  const newDay = new Date(`${year}-${month}-${date}`);
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const targetDay = daysOfWeek[newDay.getDay()];
+  return targetDay;
+}
+
 export function formatCurrentDate(dateString) {
   const [year, month, date] = dateString.split('-');
 

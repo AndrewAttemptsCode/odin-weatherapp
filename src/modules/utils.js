@@ -78,14 +78,8 @@ export function toggleTempUnits() {
   const tempElements = document.querySelectorAll('.current-temp, .current-max, .current-min, .current-feels-like, .weekly-temp, .weather-temp');
 
   tempElements.forEach((element) => {
-    let originalTempValue = parseFloat(element.getAttribute('original-temp-data'));
-
-    if (Number.isNaN(originalTempValue)) {
-      originalTempValue = parseFloat(element.textContent);
-      element.setAttribute('original-temp-data', originalTempValue);
-    }
-
-    element.textContent = tempFormat(originalTempValue);
+    const defaultTemp = parseFloat(element.dataset.defaultTemp);
+    element.textContent = tempFormat(defaultTemp);
   });
 }
 

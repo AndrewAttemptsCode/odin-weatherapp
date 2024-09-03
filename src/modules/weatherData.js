@@ -19,13 +19,6 @@ export default class WeatherData {
 
   displayCurrent() {
     const formattedCurrentDate = formatCurrentDate(this.datetime);
-    // const formattedTemp = tempFormat(this.temp);
-    // const formattedMinTemp = tempFormat(this.tempMin);
-    // const formattedMaxTemp = tempFormat(this.tempMax);
-    // const formattedFeelsLike = tempFormat(this.feelsLike);
-
-    // OK, finally figured it out, set attributes to store og data for each
-    // Do calcs based off the attribute data, not text content
 
     const currentSide = document.querySelector('.current-side');
     // Clear previous current weather display
@@ -48,7 +41,7 @@ export default class WeatherData {
     const currentTemp = document.createElement('p');
     currentTemp.classList.add('current-temp');
     currentTemp.title = 'Current Temp';
-    currentTemp.setAttribute('original-temp-data', this.temp);
+    currentTemp.dataset.defaultTemp = this.temp;
     currentTemp.textContent = tempFormat(this.temp);
     currentSide.appendChild(currentTemp);
     // Condition
@@ -76,6 +69,7 @@ export default class WeatherData {
     // Temp Max value
     const currentMax = document.createElement('p');
     currentMax.classList.add('current-max');
+    currentMax.dataset.defaultTemp = this.tempMax;
     currentMax.textContent = tempFormat(this.tempMax);
     minMaxContainer.appendChild(currentMax);
     // Temp Min Indicator
@@ -87,6 +81,7 @@ export default class WeatherData {
     // Temp Min value
     const currentMin = document.createElement('p');
     currentMin.classList.add('current-min');
+    currentMin.dataset.defaultTemp = this.tempMin;
     currentMin.textContent = tempFormat(this.tempMin);
     minMaxContainer.appendChild(currentMin);
     // Feels like container
@@ -102,22 +97,19 @@ export default class WeatherData {
     // Feels Like value
     const currentFeelsLike = document.createElement('p');
     currentFeelsLike.classList.add('current-feels-like');
+    currentFeelsLike.dataset.defaultTemp = this.feelsLike;
     currentFeelsLike.textContent = tempFormat(this.feelsLike);
     feelsLikeContainer.appendChild(currentFeelsLike);
 
+    // Click current weather to toggle temp units
     currentTemp.addEventListener('click', () => {
       toggleIsCelcius();
       toggleTempUnits();
-      // currentTemp.textContent = tempFormat(this.temp);
-      // currentMin.textContent = tempFormat(this.tempMin);
-      // currentMax.textContent = tempFormat(this.tempMax);
-      // currentFeelsLike.textContent = tempFormat(this.feelsLike);
     });
   }
 
   displayWeekly() {
     const formattedDate = formatWeeklyDate(this.datetime);
-    const formattedTemp = tempFormat(this.temp);
     const formattedDay = formatWeeklyDay(this.datetime);
 
     // Card container
@@ -145,13 +137,13 @@ export default class WeatherData {
     // Temp
     const weeklyTemp = document.createElement('p');
     weeklyTemp.classList.add('weekly-temp');
-    weeklyTemp.textContent = `${formattedTemp}`;
+    weeklyTemp.dataset.defaultTemp = this.temp;
+    weeklyTemp.textContent = tempFormat(this.temp);
     weeklyWeatherCard.appendChild(weeklyTemp);
   }
 
   displayHourly() {
     const formattedTime = formatTime(this.datetime);
-    const formattedTemp = tempFormat(this.temp);
 
     // Card container
     const cardContainer = document.querySelector('.hourly-card-container');
@@ -173,7 +165,8 @@ export default class WeatherData {
     // Temp
     const weatherTemp = document.createElement('p');
     weatherTemp.classList.add('weather-temp');
-    weatherTemp.textContent = `${formattedTemp}`;
+    weatherTemp.dataset.defaultTemp = this.temp;
+    weatherTemp.textContent = tempFormat(this.temp);
     weatherCard.appendChild(weatherTemp);
   }
 }
